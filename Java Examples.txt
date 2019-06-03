@@ -149,7 +149,151 @@ class MultiClasses2{
 	hi.phy=75;
 	hi.che=82;
 
-	hi.message(); --- Retrieves the method from class called Second.
+	hi.message(); --- Retrieves the method from class called Second.git
 	System.out.println(hi.phy+hi.che);
 	}
 }
+_
+CREATING TWO OBJECTS IN ORDER TO INPUT DIFF VALUES AND OBTAIN DIFF OUTPUTS
+class Results{
+	
+	int phy, che, mat;
+
+	public void ShowResults(){
+
+		int total;
+		total=phy+che+mat;
+		System.out.println("Total score: "+total);
+
+		if(total<300){
+			System.out.println("Fail");
+		}
+		else{
+			System.out.println("Pass");
+		}
+	}
+}
+
+class School{
+	public static void main(String xyz[]){
+
+		Results Peter, James; --- Creates TWO objects
+		Peter=new Results(); --- Still creates references to the members of Results class
+		James=new Results();
+
+		Peter.phy=80;
+		Peter.che=94;
+		Peter.mat=97;
+				--- Defines different values to be used in same method within Results
+		James.phy=90;
+		James.che=102;
+		James.mat=84;
+
+		Peter.ShowResults();
+		James.ShowResults();
+	}
+}
+_
+CREATING MULTIPLE METHODS IN A CLASS
+METHODS THAT EXPECT A VALUE
+MAKING CLASS MEMBERS PRIVATE
+ADDING RESTRICTIONS TO ENSURE INPUTS ARE CONFINED E.G. NOT OVER TOTAL POSSIBLE MARKS
+class Results{
+	
+	private int phy, che, mat;
+
+	public void Physics(int P){ --- Method expects a value
+		if(P>=0 && P<=150){
+			phy=P;
+		}
+		else{
+			System.out.println("Invalid entry!");
+		}
+	}
+
+	public void Chemistry(int C){
+		if(C>=0 && C<=150){
+			che=C;
+		}
+		else{
+			System.out.println("Invalid entry!");
+		}
+	}
+
+	public void Maths(int M){
+		if(M>=0 && M<=150){
+			mat=M;
+		}
+		else{
+			System.out.println("Invalid entry!");
+		}
+	}
+
+	public void ShowResults(){
+
+		int total;
+		total=phy+che+mat;
+		System.out.println("Total score: "+total);
+
+		if(total<300){
+			System.out.println("Fail");
+		}
+		else{
+			System.out.println("Pass");
+		}
+	}
+}
+
+class School{
+	public static void main(String xyz[]){
+
+		Results Peter, James;
+		Peter=new Results();
+		James=new Results();
+
+		Peter.Physics(92);
+		Peter.Chemistry(93);
+		Peter.Maths(82);
+
+		James.Physics(85);
+		James.Chemistry(95);
+		James.Maths(83);
+
+		Peter.ShowResults();
+		James.ShowResults();
+	}
+}
+_
+ADDING IN RESTRICTIONS TO ENSURE A VALUE IS PASSED IN
+class Results{
+	
+	private int phy, che, mat;
+
+	public void Physics(int P){
+		if(P>=0 && P<=150){
+			phy=P;
+		}
+		else{
+			phy=-1; --- Default value ('0' can be a valid input)
+			System.out.println("Invalid entry!");
+		}
+	}
+... ...
+	public void ShowResults(){
+
+		int total;
+		total=phy+che+mat;
+		System.out.println("Total score: "+total);
+
+		if(phy==-1||che==-1||mat==-1){ --- This will run if any input has been missed
+			System.out.println("No results!");
+		}
+		if(total<300){
+			System.out.println("Fail");
+		}
+		else{
+			System.out.println("Pass");
+		}
+	}
+}
+_
