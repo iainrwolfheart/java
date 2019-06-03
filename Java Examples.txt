@@ -1,0 +1,155 @@
+CREATING A CLASS
+class FirstClass{
+	public static void main(String xyz[]){
+
+		int a;
+		int b;
+		int c;
+
+		a=10;
+		b=15;
+		c=a+b;
+
+		System.out.println(c);
+	}
+}
+_
+CREATING MULTIPLE VARIABLE OF SAME TYPE/
+JAVA SYNTAX FOR IF AND ELSE
+class Results{
+	public static void main(String xyz[]){
+
+		int phy, che, mat, total;
+		float per;
+
+	phy=65;
+	che=70;
+	mat=82;
+	total=phy+che+mat;
+	per=total*100/300;
+
+	System.out.println("The total is "+total);
+	System.out.println("Your percentage score is "+per+"%");
+
+	if(per>=60){
+		System.out.println("You have passed, congrats!");
+	}
+
+	else{
+		System.out.println("You failed, fool.");
+	}
+	}
+}
+_
+WHILE LOOPS
+class Loops1{
+	public static void main(String xyz[]){
+
+		int a;
+
+		a=1;
+
+	while(a<=10){
+		System.out.println(a);
+		a+=1;
+	}
+	}
+}
+_
+FOR LOOPS
+class Loops1{
+	public static void main(String xyz[]){
+
+		int a;
+
+	for(a=1; a<=10; a+=1){ --- (initiliser; condition; updation)
+		System.out.println(a);
+	}
+	}
+}
+_
+USING MULTIPLE INITIALISERS AND UPDATES
+class Loops1{
+	public static void main(String xyz[]){
+
+	int a,b,c;
+
+for(a=2,b=5,c=10; a<=20; a++,b+=5, c+=10){
+	System.out.println(a+"-"+b+"-"+c);
+}
+}
+}
+_
+USING NO INITIALISER
+USING LOGICAL OPERATORS WITHIN CONDITION
+USING MULTIPLE UPDATES
+USING INCREMENT OPERATOR
+class Loops1{
+	public static void main(String xyz[]){
+
+	int a,b,c;
+
+	a=2;
+	b=5;
+	c=10;
+
+for(; a<=10 && b<=80 && c<=180; a++, b++, c++){
+	System.out.println(a+"-"+b+"-"+c);
+}
+}
+_
+PLACING UPDATES IN CODE BLOCK
+	int a,b,c;
+
+for(a=2,b=5,c=10; a<=20;){
+	System.out.println(a+"-"+b+"-"+c);
+	a++;
+	b+=5;
+	c+=10;
+}
+}
+}
+_
+MULTIPLE CLASSES IN ONE FILE
+class Store{
+	int x;
+	int y;
+}
+
+class MultiClasses{
+	public static void main(String xyz[]){
+
+		Store Ref; ---  creates reference variable which stores object address. 'Ref' can be any name.
+		Ref=new Store(); --- assigns class requirements to variable
+
+		Ref.x=10; --- uses the x variable from within the Store object
+		Ref.y=20;
+
+		System.out.println(Ref.x*Ref.y);
+	}
+}
+_
+MULTIPLE CLASSES WITH VARYING METHODS
+class Second{
+	int phy, che;
+
+	public void message(){
+		System.out.println("Hello");
+		System.out.println("my friends.");
+	}
+}
+
+class MultiClasses2{
+	
+	public static void main(String xyz[]){
+		
+		Second hi;
+		hi=new Second();
+
+	hi.phy=75;
+	hi.che=82;
+
+	hi.message(); --- Retrieves the method from class called Second.
+	System.out.println(hi.phy+hi.che);
+	}
+}
