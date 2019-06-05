@@ -13,7 +13,5 @@ class MultiClasses{
 		Ref.y=20;
 
 		System.out.println(Ref.x*Ref.y);
-
-
 	}
 }

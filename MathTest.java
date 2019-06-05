@@ -1,24 +1,27 @@
-class Maths{
-	public void Addition(int a, int b){
-		int Result;
-		Result=a+b;
-		System.out.println("The addition result is "+Result);
-	}
-	public int Subtraction(int a, int b){
-		int Answer;
-		Answer=a-b;
-		return Answer;
-	}
-}
-
 class MathTest{
-	public static void main(String xyz[]){
-		Maths x;
-		x=new Maths();
-		
-		x.Addition(5,2);
-
-		System.out.println("The subtraction result is "
-			+ x.Subtraction(10,3));
-			}
+	public static void main(String args[]){
+		Maths call=new Maths();
+		//call.Add(23,14);
+		call.Subtract(23,14);
+		//call.Mult(23,14);
+	}
 }
+
+class Maths{
+	//public void Add(int a, int b);
+	public void Subtract(int a, int b){
+		System.out.println("The sub result is "+(a-b));
+	}
+}
+
+class Maths2 extends Maths{
+	public void Mult(int a, int b){
+		int result=a*b;
+		System.out.println("The mult result is "+result);
+	}
+	public void Add(int a, int b){
+		int result=a+b;
+		System.out.println("The add result is "+result);
+	}
+}
+

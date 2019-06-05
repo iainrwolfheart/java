@@ -297,3 +297,496 @@ class Results{
 	}
 }
 _
+FUNCTIONS VS PROCEDURES
+class Maths{
+	public void Addition(int a, int b){ --- 'void' implies procedure
+		int Result;
+		Result=a+b;
+		System.out.println("The addition result is "+Result);
+	}
+	public int Subtraction(int a, int b){ --- 'int' implies a variable will be returned
+		int Answer;
+		Answer=a-b;
+		return Answer; --- use return in case of function
+	}
+}
+
+class MathTest{
+	public static void main(String xyz[]){
+		Maths x;
+		x=new Maths();
+		
+		x.Addition(5,2); --- Syntax to call procedure
+
+		System.out.println("The subtraction result is "
+			+ x.Subtraction(10,3)); --- Syntax to call function
+			}
+}
+_
+OUTSIDE CLASS CALLS PROCEDURE FROM METHOD WITHIN ANOTHER CLASS WHICH 
+CALLS ON PRIVATE METHOD WITHIN SAME CLASS
+class Results{
+	
+	private int phy, che, mat, total; float per;
+
+	private void Calculations(){
+		total=phy+che+mat;
+		per=total*100/450;
+	}
+
+	public void Physics(int P){
+		if(P>=0 && P<=150){
+			phy=P;
+		}
+		else{
+			phy=-1;
+			System.out.println("Invalid entry!");
+		}
+	}
+
+	public void Chemistry(int C){
+		if(C>=0 && C<=150){
+			che=C;
+		}
+		else{
+			che=-1;
+			System.out.println("Invalid entry!");
+		}
+	}
+
+	public void Maths(int M){
+		if(M>=0 && M<=150){
+			mat=M;
+		}
+		else{
+			mat=-1;
+			System.out.println("Invalid entry!");
+		}
+	}
+
+	public void ShowResults(){
+
+		int total;
+		total=phy+che+mat;
+
+		if(phy==-1||che==-1||mat==-1){
+			System.out.println("No results!");
+		}
+		else{
+			Calculations();
+			System.out.println("Total marks = "+total);
+			System.out.println("Percentage = "+per+("%"));
+		}
+	}
+}
+
+class School{
+	public static void main(String xyz[]){
+
+		Results ABC;
+		ABC=new Results();
+		ABC.Physics(102);
+		ABC.Chemistry(98);
+		ABC.Maths(103);
+		ABC.ShowResults();
+	}
+}
+___________________
+CONSTRUCTORS
+class NBS{
+	public static void main(String xyz[]){
+
+		Bank ref;
+		ref=new Bank();---
+		ref.Deposit(200);
+		ref.Withdraw(100);
+		ref.Balance();
+	}
+}
+
+class Bank{
+	private int amount;
+
+	public void Deposit (int money){
+		amount+=money;
+	}
+	public void Withdraw (int money){
+		if(money<=amount){
+			amount-=money;
+		}
+		else{
+			System.out.println("Insufficient funds.");
+		}
+	}
+	public void Balance(){
+		System.out.println("Your balance is £"+amount);
+	}
+	public Bank(){		--- This is the constructor, indicated by same name as it's class AND no return type
+		System.out.println("Welcome to your account.");
+	}
+}
+_
+USING FLOATS
+class AccountsTest{
+	public static void main(String xyz[]){
+		Accounts ref=new Accounts();
+		ref.Tax();
+		ref.Tax(2000);
+		ref.Tax(2000,14.5f);
+	}
+}
+
+class Accounts{
+	public void Tax(){
+		System.out.println("Tax rate is"+22.7);
+	}
+	public void Tax(int sal){
+		float t;
+		t=sal*22.7f/100;
+		System.out.println("Your tax amount is "+t);
+	}
+	public void Tax(int sal, float tr){
+		float t;
+			t=sal*tr/100;
+		System.out.println("Your tax amount is "+t);
+	}
+}
+_
+CHOOSING CONSTRUCTOR BASED ON NUMBER OF PARAMETERS
+class AccountsTest{
+	public static void main(String xyz[]){
+		Manchester x=new Manchester(); --- No. of parameters input decides which constructor is initialised
+	}
+}
+
+class Manchester{
+	public Manchester (int a){
+		System.out.println("You have used constructor No.1!");
+	}
+	public Manchester (int a, int b){
+		System.out.println("You have used constructor No.2!");
+	}
+}
+_________
+DIGIT TO WORD CONVERTER
+NOTE HOW ONE FUNCTION CALLS OTHER FUNCTIONS WITHIN THE SAME CLASS
+class DigitPrint{
+	public static void main(String args[]){
+		Digits input;
+		input=new Digits();
+		input.Split(2104);
+	}
+}
+
+class Digits{
+	
+	public void Split(int num){
+		String answer="";
+		if(num>=1000 && num<=9999){
+			answer=Ones(num/1000)+" thousand ";
+			num=num%1000;
+		}
+		if(num>=100){
+			answer+=Ones(num/100)+" hundred ";
+			num=num%100;
+		}
+		if(num>=20){
+			answer+=Tens(num/10);
+			num=num%10;
+		}
+		if(num>0 && num<20){
+			answer+=Ones(num);
+		}
+	System.out.println(answer);
+	}
+	private String Ones(int num){
+		String word="";
+		switch(num){
+			case 1: word="one"; break;
+			case 2: word="two"; break;
+			case 3: word="three"; break;
+			case 4: word="four"; break;
+			case 5: word="five"; break;
+			case 6: word="six"; break;
+			case 7: word="seven"; break;
+			case 8: word="eight"; break;
+			case 9: word="nine"; break;
+			case 10: word="ten"; break;
+			case 11: word="eleven"; break;
+			case 12: word="twelve"; break;
+			case 13: word="thirteen"; break;
+			case 14: word="fourteen"; break;
+			case 15: word="fifteen"; break;
+			case 16: word="sixteen"; break;
+			case 17: word="seventeen"; break;
+			case 18: word="eighteen"; break;
+			case 19: word="nineteen"; break;
+		}
+		return word;
+	}
+	private String Tens(int num){
+		String word="";
+		switch(num){
+			case 2: word="twenty "; break;
+			case 3: word="thirty "; break;
+			case 4: word="forty "; break;
+			case 5: word="fifty "; break;
+			case 6: word="sixty "; break;
+			case 7: word="seventy "; break;
+			case 8: word="eighty "; break;
+			case 9: word="ninety "; break;
+		}
+		return word;
+	}
+}
+
+
+/* num=int(input("Input number"))
+
+def ones(num):
+	tho=""
+	if num==1:
+		tho="one"
+	if num==2:
+		tho="two"
+	if num==3:
+		tho="three"
+	if num==4:
+		tho="four"
+	if num==5:
+		tho="five"
+	if num==6:
+		tho="six"
+	if num==7:
+		tho="seven"
+	if num==8:
+		tho="eight"
+	if num==9:
+		tho="nine"
+	if num==10:
+		tho="ten"
+	if num==11:
+		tho=="eleven"	
+	elif num==12:
+		tho="twelve"
+	elif num==13:
+		tho="thirteen"
+	elif num==14:
+		tho="fourteen"
+	elif num==15:
+		tho="fifteen"
+	elif num==16:
+		tho="sixteen"
+	elif num==17:
+		tho="seventeen"
+	elif num==18:
+		tho="eighteen"
+	elif num==19:
+		tho="nineteen"
+	return tho
+
+def tens(num):
+	dou=""
+	if num==20:
+		dou="twenty"
+	if num==30:
+		dou="thirty"
+	if num==40:
+		dou="forty"
+	if num==50:
+		dou="fifty"
+	if num==60:
+		dou="sixty"
+	if num==70:
+		dou="seventy"
+	if num==80:
+		dou="eighty"
+	if num==90:
+		dou="ninety"
+	return dou
+
+answer=""
+if num>=10000:
+	print("Error on input")
+else:
+	if num>=1000 and num<=9999:
+		answer+=ones(int(num/1000))+" thousand "
+		num=num%1000
+	if num>=100:
+		answer+=ones(int(num/100))+" hundred and "
+		num=num%100
+	if num>=20:
+		answer+=tens(int(num/10)*10)+" "
+		num=num%10
+	if num>0 and num<20:
+		answer+=ones(num)
+
+	print(answer)*/
+_____________________
+INHERITANCE
+MATHS2 CLASS INHERITS THE FUNCTIONS OF MATHS. WHEN THE MAIN METHOD CALLS
+MATHS2 IT HAS ACCESS TO THE FUNCTIONS OF MATHS BY EXTENSION
+class MathTest{
+	public static void main(String args[]){
+		Maths2 call=new Maths2();
+		call.Add(23,14);
+		call.Subtract(23,14);
+		call.Mult(23,14);
+	}
+}
+
+class Maths{
+	public void Add(int a, int b){
+		int result=a+b;
+		System.out.println("The add result is "+result);
+	}
+	public void Subtract(int a, int b){
+		System.out.println("The sub result is "+(a-b));
+	}
+}
+
+class Maths2 extends Maths{
+	public void Mult(int a, int b){
+		int result=a*b;
+		System.out.println("The mult result is "+result);
+	}
+}
+___________________
+ABSTRACTION
+THE MATH CLASS IS ABSTRACT AS THERE IS A METHOD WITH NO CODE BODY
+THIS METHOD WILL NEED TO BE OVERRIDDEN WHEN CALLED BY MATHS2 TO AVOID
+MATHS2 BECOMING ABSTRACT ITSELF
+class MathTest{
+	public static void main(String args[]){
+		Maths2 call=new Maths2();
+		call.Add(23,14);
+		call.Subtract(23,14);
+		call.Mult(23,14);
+	}
+}
+
+abstract class Maths{
+	abstract public void Add(int a, int b);
+	public void Subtract(int a, int b){
+		System.out.println("The sub result is "+(a-b));
+	}
+}
+
+class Maths2 extends Maths{
+	public void Mult(int a, int b){
+		int result=a*b;
+		System.out.println("The mult result is "+result);
+	}
+	public void Add(int a, int b){ --- This is the abstract method from Maths Class, overridden to ensure it can be used in an object
+		int result=a+b;
+		System.out.println("The add result is "+result);
+	}
+}
+________
+USING A REFERENCE VARIABLE IN A METHOD PARAMETER IN ORDER TO ACCESS
+METHODS IN CHILD CLASSES
+CREATING THE OBJECT BASED ON THE CHILD CLASS NAME TELLS THE REFERENCE
+WHERE TO GO TO RETRIEVE THE DESIRED METHOD
+class Painting{
+	public static void main(String args []){
+		Line ref=new Line();
+		LetsDraw(ref);
+		Circle ref2=new Circle();
+		LetsDraw(ref2);
+	}
+	public static void LetsDraw(Draw D){ --- Reference variable in parameter referencing the named class
+		D.Drawing();
+	}
+}
+
+abstract class Draw{
+	abstract public void Drawing();
+}
+
+class Line extends Draw{
+	public void Drawing(){
+		System.out.println("I'm drawing a line.");
+	}
+}
+
+class Circle extends Draw{
+	public void Drawing(){
+		System.out.println("I'm drawing a circle.");
+	}
+}
+_
+SECOND EXAMPLE ADDS ANOTHER ABSTRACT METHOD TO THE PARENT CLASS AND SHOWS
+THAT YOU NEED TO OVERRIDE ALL METHODS DEFINED AS ABSTRACT!!
+class Painting{
+	public static void main(String args []){
+		Line ref=new Line();
+		LetsDraw(ref);
+		Circle ref2=new Circle();
+		LetsDraw(ref2);
+		Square ref3=new Square();
+		LetsDraw(ref3);
+	}
+	public static void LetsDraw(Draw D){
+		D.Drawing();
+		D.Paint();
+	}
+}
+
+abstract class Draw{
+	abstract public void Drawing();
+	abstract public void Paint();
+}
+
+class Line extends Draw{
+	public void Drawing(){
+		System.out.println("I'm drawing a line.");
+	}
+	public void Paint(){
+		int a;
+	}
+}
+
+class Circle extends Draw{
+	public void Drawing(){
+		System.out.println("I'm drawing a circle.");
+	}
+	public void Paint(){
+		int a;
+	}
+}
+class Square extends Draw{
+	public void Paint(){
+		System.out.println("And now I'm actually painting!");
+	}
+	public void Drawing(){
+		int a;
+	}
+}
+____
+FINAL METHOD
+USING FINAL MEANS A METHOD CANNOT BE OVERRIDDEN IN ANY WAY IN AN INHERITING CLASS
+abstract class Maths{
+	abstract public void Add(int a, int b);
+	final public void Subtract(int a, int b){
+		System.out.println("The sub result is "+(a-b));
+_
+FINAL CLASS
+LIKEWISE A FINAL CLASS MUST BE USED AS IS AND CANNOT BE INHERITED AT ALL
+final class Maths{
+	//public void Add(int a, int b);
+	public void Subtract(int a, int b){
+		System.out.println("The sub result is "+(a-b));
+	}
+}
+__________________
+ARRAYS
+FIRST DECLARE VARIABLE TYPE TO BE STORED FOLLOWED BY THE
+ARRAY[] INDICATOR FOLLOWED BY THE ARRAY NAME. ELEMENTS ARE STORED
+IN CURLY BRACES.
+IN THIS CASE AN INT IS EXPECTED AND NEEDS TO BE RETURNED
+private String Ones(int num){
+String[] Ones ={"","one","two","three","four","five",
+		"six","seven","eight","nine","ten","eleven","twelve",
+		"thirteen","fourteen","fifteen","sixteen","seventeen",
+		"eighteen","nineteen"};
+		return Ones[num];

@@ -1,6 +1,11 @@
 class Results{
 	
-	private int phy, che, mat;
+	private int phy, che, mat, total; float per;
+
+	private void Calculations(){
+		total=phy+che+mat;
+		per=total*100/450;
+	}
 
 	public void Physics(int P){
 		if(P>=0 && P<=150){
@@ -40,11 +45,10 @@ class Results{
 		if(phy==-1||che==-1||mat==-1){
 			System.out.println("No results!");
 		}
-		if(total<300){
-			System.out.println("Fail");
-		}
 		else{
-			System.out.println("Pass");
+			Calculations();
+			System.out.println("Total marks = "+total);
+			System.out.println("Percentage = "+per+("%"));
 		}
 	}
 }
@@ -52,19 +56,18 @@ class Results{
 class School{
 	public static void main(String xyz[]){
 
-		Results Peter, James;
-		Peter=new Results();
-		James=new Results();
-
-		Peter.Physics(92);
-		Peter.Chemistry();
-		Peter.Maths(82);
-
-		James.Physics();
-		James.Chemistry(95);
-		James.Maths(83);
-
-		Peter.ShowResults();
-		James.ShowResults();
+	Results iain, olivia;
+	iain = new Results();
+	olivia = new Results();
+	iain.Physics(45);
+	iain.Chemistry(34);
+	iain.Maths(24);
+	System.out.println("The results for Iain are;");
+	iain.ShowResults();
+	olivia.Physics(40);
+	olivia.Chemistry(80);
+	olivia.Maths(134);
+	System.out.println("The results for Olivia are;");
+	olivia.ShowResults();
 	}
 }
