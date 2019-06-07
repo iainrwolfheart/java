@@ -726,7 +726,7 @@ class Painting{
 		Square ref3=new Square();
 		LetsDraw(ref3);
 	}
-	public static void LetsDraw(Draw D){
+	public static void LetsDraw(Draw D){ --- This method is required to call the parent of the classes containing the methods we wish to call					
 		D.Drawing();
 		D.Paint();
 	}
@@ -790,3 +790,229 @@ String[] Ones ={"","one","two","three","four","five",
 		"thirteen","fourteen","fifteen","sixteen","seventeen",
 		"eighteen","nineteen"};
 		return Ones[num];
+_________________
+THIS
+THIS REASSIGNS VALUE TO DATA MEMBER OF SAME NAME IN THE OBJECT VIEW
+NOTE THAT IF YOU DON'T CALL THE METHOD WITH THIS. IN, THE VALUE OF THAT
+DATA MEMBER REMAINS UNCHANGED
+class Math47{
+	int a;
+
+	public void Message(){
+		int a;
+		this.a=20;
+		a=15;
+		System.out.println("The result is "+a);
+	}
+	public void Message2(){
+		System.out.println("The result is "+a);
+	}
+}
+
+class ThisEx{
+	public static void main(String args[]){
+		Math47 ref=new Math47();
+		Math47 ref2=new Math47();
+
+		ref.Message();
+		ref.Message2();
+		ref2.Message2();
+	}
+}
+__________
+PROTECTED
+USING PRIVATE ON PARENT DATA MEMBER OR METHOD THROWS AN ERROR WHEN CALLED 
+BY CHILD CLASS. HOWEVER, A PROTECTED MEMBER CAN BE ACCESSED BY CHILD CLASS, 
+BUT STILL NOT BY 'UNRELATED' CLASSES.
+class ThisEx{
+	public static void main(String args[]){
+		Math47 ref=new Math47();
+		Math47 ref2=new Math47();
+		Math48 ref3=new Math48();
+
+		//ref.Message();
+		//ref2.Message2();
+		ref3.Message();
+		ref3.Message3();
+	}
+}
+class Math47{
+	private int a;
+
+	protected void Message(){
+		int a;
+		this.a=20;
+		a=15;
+		System.out.println("The result is "+a);
+	}
+	public void Message2(){
+		System.out.println("The result is "+a);
+	}
+}
+
+class Math48 extends Math47{
+
+	public void Message3(){
+		System.out.println("The result is "+a);
+	}
+}
+_________________
+SUPER() AND THIS()
+WHEN CALLING CHILD CONSTRUCTOR, THE CONSTRUCTORS IN ALL PARENT CLASSES
+EXPECTING NO PARAMETERS WILL BE CALLED, 'OLDEST' FIRST. IF NO SUCH 
+CONSTRUCTOR EXISTS, AN ERROR WILL BE THROWN. THIS() CALLS ANOTHER 
+CONSTRUCTOR WITHIN A CLASS. THE ORDER WILL DEPEND ON WHERE IT'S PLACED 
+WITHIN THE CONSTRUCTOR. SUPER(7), FOR EXAMPLE, CAN BE USED TO DIVERT TO A 
+PARENT CLASS THAT DOES EXPECT A PARAMETER.
+class ConstructorEx{
+	public static void main(String args[]){
+
+		Three ref=new Three(7);
+	}
+}
+
+class One{
+	public One(){
+		System.out.println("One with no v.");
+	}
+	public One(int a){
+		System.out.println("One with one v.");
+	}
+}
+class Two extends One{
+	public Two(){
+		super(7);
+		System.out.println("Two with no v.");
+	}
+	public Two(int a){
+		System.out.println("Two with one v.");
+	}
+}
+class Three extends Two{
+	public Three(){
+		System.out.println("Three with no v.");
+	}
+	public Three(int a){
+		System.out.println("Three with one v.");
+	}
+}
+_
+THIS EXAMPLE WILL PRINT THE 1-PARAMETER CONSTRUCTOR, THEN THE NO-PARAMETER
+CONSTRUCTOR.
+class Two extends One{
+	public Two(){
+		this(7);
+		System.out.println("Two with no v.");
+	}
+	public Two(int a){
+		System.out.println("Two with one v.");
+___________
+WORDCOUNT FUNCTION
+class String1{
+	public static void main(String args[]){
+
+	StringProcessing ref = new StringProcessing();
+	ref.WordCount("Hello my friends");
+	}
+}
+
+class StringProcessing{
+	
+	public void  WordCount(String msg){
+		int word=0;
+		int i=0;
+		while(i<msg.length()){
+			if(msg.substring(i,i+1).equals(" ")){
+				word++;
+			}
+			i++;
+		}
+		word++;
+		System.out.println("There are "+word+" words in this string.");
+	}
+}	
+________________________
+EXCEPTION HANDLING
+IN THE CATCH THERE NEEDS TO BE A REFERENCE VARIABLE CREATED TO LINK TO THE
+OBJECT OF THE EXCEPTION
+class ExceptionTest{
+	public static void main(String args[]){
+		int a,b,c;
+		a=b=c=0;
+		try{ --- EXECUTED IN A METHOD
+			a=4;
+			b=0;
+			c=a/b;
+			System.out.println("Result: "+c);
+		}
+		catch(ArithmeticException ref1){ --- NEXT BLOCK, CAN HAVE MULTIPLE
+			System.out.println("You're trying to divide by zero!");
+		}
+	}
+}
+_
+MULTIPLE EXCEPTION HANDLERS EXAMPLE
+	public static void main(String args[]){
+		
+		int first, second, result;
+		first=second=result=0;
+
+		try{
+			first=Integer.parseInt(args[0]); --- CAN ALSO USE Float.parseFloat()
+			second=Integer.parseInt(args[1]);
+			result=first/second;
+			System.out.println("Result: "+result);
+		}
+		catch(IndexOutOfBoundsException c1){
+			System.out.println("Pass more values, silly.");
+		}
+		catch(ArithmeticException c2){
+			System.out.println("Can't divide by zero, remember?");
+		}
+		catch(NumberFormatException c3){
+			System.out.println("This string cannot be converted to digits, yo.");
+		}
+_________________________
+ARRAYS
+TYPE DECLARATION/ARRAY DECLARATION/ARRAY NAME/CONTENTS
+class ArraysYo{
+	public static void main(String args[]){
+		int[] FirstList={4,8,11,16,25};
+		System.out.println(FirstList[3]);
+
+		Array2 ref1=new Array2();
+		ref1.Feed(2);
+		Array3 ref2=new Array3();
+		ref2.FeedFromVar();
+	}
+}
+class Array2{
+	public static void Feed(int num){
+		int[] FirstList={4,8,11,16,25};
+		System.out.println(FirstList[num]);
+	}
+}
+class Array3{
+	public static void FeedFromVar(){
+		int A=3;
+		int B=4;
+		int[] FirstList={4,8,11,16,25};
+		System.out.println((FirstList[A])+(FirstList[B]));
+	}
+}
+_
+SENDING VALUES INTO THE MAIN METHOD ARRAY IN THE TERMINAL AND PRINTING
+THEM IN THE METHOD
+class ArraysYo{
+	public static void main(String args[]){
+		
+		//int i;--- TURNS OUT THIS CAN BE DECLARED IN THE FOR LOOP
+		for(int i=0;i<args.length; i++){
+			System.out.println(args[i]);
+		}
+C:\Users\iainr\OneDrive\Desktop\Java>java ArraysYo will this now work
+will
+this
+now
+work
+_

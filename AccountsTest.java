@@ -4,9 +4,11 @@ class AccountsTest{
 		hsbc=new Bank();
 		natwest=new Bank();
 		nbs=new Bank();
+		hsbc.Setdollar(100);
 		hsbc.Amount(4);
-		Bank.Setdollar(200);
+		natwest.Setdollar(200);
 		natwest.Amount(8);
+		nbs.Setdollar(400);
 		nbs.Amount(7);
 	}
 }

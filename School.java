@@ -8,7 +8,7 @@ class Results{
 	}
 
 	public void Physics(int P){
-		if(P>=0 && P<=150){
+		if(P>=0 && P<=150){	
 			phy=P;
 		}
 		else{
