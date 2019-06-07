@@ -972,6 +972,47 @@ MULTIPLE EXCEPTION HANDLERS EXAMPLE
 		catch(NumberFormatException c3){
 			System.out.println("This string cannot be converted to digits, yo.");
 		}
+_
+CREATING YOUR OWN EXCEPTIONS AND THROWING THEM TO OTHER USERS TO HANDLE
+AS THEY CHOOSE
+A CLASS MUST BE CREATED FOR USER DEFINED EXCEPTION (BOTTOM OF EX.)
+USE DOCUMENTATION TO MAKE CLEAR WHAT EXCEPTION MAY BE RAISED WHEN METHOD IS
+CALLED
+class ThrowEx{
+    public static void main(String args[]){
+        AccountsSlip ref=new AccountsSlip();
+        ref.SalarySlip(2000,8);
+    }
+}
+class Accounts{
+    public float Tax(int Sal, int Abs) throws AbsentiesException{
+        float t;
+
+        if(Abs>=7){
+            AbsentiesException exref =new AbsentiesException();
+            throw exref;
+        }
+        else{
+            t=Sal*21/100;
+        }
+    return t;
+    }
+}
+
+class AccountsSlip{
+    public void SalarySlip(int Sal, int Abs){
+        Accounts metrep=new Accounts();
+        try{
+            float ns;
+            ns=Sal-metrep.Tax(Sal,Abs);
+            System.out.println("Net Sal= "+ns);
+        }
+        catch(AbsentiesException exref){
+            System.out.println("Too many absentee days!");
+        }
+    }
+}
+class AbsentiesException extends Exception{}
 _________________________
 ARRAYS
 TYPE DECLARATION/ARRAY DECLARATION/ARRAY NAME/CONTENTS
