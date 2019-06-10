@@ -9,13 +9,13 @@ class FandR{
     public String Replace(String inp, String find){
         int i=0;
         String rep="noob";
-        String old="";
+        //String old="";
         String out="";
 
         while(i<inp.length()){
             if(inp.substring(i,i+find.length())==find){
                 out+=rep;
-                inp.substring(i)=inp.substring(i+find.length());
+                inp.substring[i,i+1]=inp.substring(i+find.length());
             }
             else{
                 out+=inp.substring(i);
