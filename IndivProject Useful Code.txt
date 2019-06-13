@@ -1,0 +1,117 @@
+MAIN CLASS CREATING A FRAME TO INPUT INTO SQL
+
+package TestLink;
+
+import java.awt.*;
+
+public class TestLink {
+
+    public static void main(String[] args) {
+        Frame F=new Frame("Database Application");
+        TextField regno,name,marks;
+        Button Btn=new Button("save");
+        WindowHandler wevent=new WindowHandler();
+        
+        regno=new TextField(10);
+        name=new TextField(10);
+        marks=new TextField(10);
+        
+        DataEntry e =new DataEntry(regno,name,marks);
+        Btn.addActionListener(e);
+        
+        F.addWindowListener(wevent);
+        F.setLayout(   new GridLayout(4,2)  );
+        F.add(new Label("Regno"));
+        F.add(regno);
+        F.add(new Label("name"));
+        F.add(name);
+        F.add(new Label("marks"));
+        F.add(marks);
+        F.add(new Label());
+        F.add(Btn);
+        F.setSize(400,400);
+        F.setVisible(true);   
+    }
+}
+_
+DATA ENTRY CLASS FOR ABOVE
+package TestLink;
+
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+
+public class DataEntry implements ActionListener{
+    TextField TR,TN,TM;
+    Statement stmt;
+    
+     public DataEntry(TextField T1,TextField T2,TextField T3) {
+        TR=T1;
+        TN=T2;
+        TM=T3;
+         try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con= DriverManager.getConnection("jdbc:mysql://localhost/practicetapes", "root", "Las1Vegas!");
+            stmt =con.createStatement();                
+         }
+         catch(Exception E) {
+             System.out.println(E.toString());
+         }
+    }
+    public void actionPerformed(ActionEvent e) {
+
+        String regno,name,marks;
+        String insertquery="";
+        regno=TR.getText();
+        name=TN.getText();
+        marks=TM.getText();
+        insertquery=" insert into school values("+regno+",'"+name+"',"+marks+")";
+	        try {
+	        stmt.executeUpdate(insertquery);
+	        
+	         }
+	         catch(Exception E) {
+	             System.out.println(E.toString());
+	         }
+
+	}
+}
+_
+WINDOW HANDLER FOR ABOVE
+package TestLink;
+
+import java.awt.event.*;
+
+public class WindowHandler implements WindowListener{
+    public void windowClosed(WindowEvent W1) {
+        
+    }
+    public void windowClosing(WindowEvent W1) {
+        System.exit(0);
+    }
+    public void windowDeactivated(WindowEvent W1) {
+        System.out.println("hello 2");
+    }
+    public void windowActivated(WindowEvent W1) {
+        System.out.println("hello 1");
+    }
+    public void windowOpen(WindowEvent W1) {}
+    public void windowOpened(WindowEvent e) {
+        // TODO Auto-generated method stub
+        
+    }
+    public void windowIconified(WindowEvent e) {
+        System.out.println("minimize");
+        // TODO Auto-generated method stub
+        
+    }
+    public void windowDeiconified(WindowEvent e) {
+        System.out.println("maximized 2");
+        
+    }
+    
+
+}
